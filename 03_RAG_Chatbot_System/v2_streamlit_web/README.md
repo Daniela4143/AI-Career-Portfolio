@@ -14,7 +14,7 @@
 
 ### 3️⃣ 多輪對話與溯源 (Memory & Citation)
 系統內建 `ConversationBufferMemory`，能理解對話脈絡。即使是追問「那它的架構呢？」，AI 也能正確識別主語為 BERT 並附上論文頁碼。
-![Memory QA Demo](images/Loading&Spinner.png)
+![Memory QA Demo](images/Memory&RAGDemo.png)
 
 ### 4️⃣ 內容邊界安全防禦 (Safety Guardrail)
 嚴格執行 Prompt Engineering 規範，若問題超出 PDF 知識庫範疇，系統將拒絕回答，有效防止 AI 幻覺。
