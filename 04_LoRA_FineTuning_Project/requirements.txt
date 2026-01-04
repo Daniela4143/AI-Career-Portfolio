@@ -1,0 +1,13 @@
+torch>=2.0.0
+transformers>=4.40.0
+datasets
+peft
+accelerate
+scikit-learn
+python-dotenv
+bitsandbytes
+tensorboard
+tqdm
+streamlit
+uvicorn
+fastapi
