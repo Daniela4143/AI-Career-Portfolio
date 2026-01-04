@@ -1,0 +1,7 @@
+.git
+.env
+chroma_db/
+venv/
+*.pdf         
+Dockerfile
+.dockerignore

@@ -1,0 +1,17 @@
+# --- 核心框架 ---
+langchain_chroma==1.1.0
+langchain_classic==1.0.1
+langchain_community==0.4.1
+langchain_core==1.2.5
+langchain_google_genai==4.1.2
+langchain_huggingface==1.2.0
+langchain_text_splitters==1.1.0
+
+# --- 介面與工具 ---
+streamlit==1.52.2
+python-dotenv==1.2.1
+
+# --- PDF 處理與向量運算 ---
+pypdf>=4.0.0
+sentence-transformers
+typing-extensions>=4.0.0
