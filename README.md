@@ -34,7 +34,7 @@
 * **功能特色：** * **知識溯源**：支援 PDF 文本檢索並標註來源頁碼。
     * **對話記憶**：內建 `ConversationBufferMemory` 實現連貫的多輪對話。
     * **容器化部署**：透過 Docker 實現一鍵部署，具備高移植性與環境隔離特點。
-* [👉 查看詳情](./03_RAG_Chatbot_System\v3_docker_cloud/)
+* [👉 查看詳情](./03_RAG_Chatbot_System/v3_docker_cloud/)
 
 ### 🧪 Project 4: LoRA Fine-Tuning
 * **技術亮點：** `PEFT (LoRA)`, `HuggingFace Transformers`, `PyTorch`
