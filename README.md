@@ -25,7 +25,7 @@
 
 ### 🤖 Project 2: Linear Regression ML
 * **核心技術：** `Scikit-Learn`, `NumPy`, `Feature Engineering`
-* **專案目標：** 實作端對端的機器學習流程，包含特徵工程處理與房價趨勢預測，並建立嚴格的模型評估指標（MSE/R2）。
+* **專案目標：** 實作端對端的機器學習流程，包含特徵工程處理與房價趨勢預測，並建立模型評估指標（MSE/R2）。
 * **關鍵成果：** 理解並實作了迴歸模型在實際業務場景中的預測邏輯。
 * [👉 查看詳情](./02_Linear_Regression_ML/)
 
@@ -34,7 +34,7 @@
 * **功能特色：** * **知識溯源**：支援 PDF 文本檢索並標註來源頁碼。
     * **對話記憶**：內建 `ConversationBufferMemory` 實現連貫的多輪對話。
     * **容器化部署**：透過 Docker 實現一鍵部署，具備高移植性與環境隔離特點。
-* [👉 查看詳情](./03_RAG_Chatbot_System/)
+* [👉 查看詳情](./03_RAG_Chatbot_System\v3_docker_cloud/)
 
 ### 🧪 Project 4: LoRA Fine-Tuning
 * **技術亮點：** `PEFT (LoRA)`, `HuggingFace Transformers`, `PyTorch`
