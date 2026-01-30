@@ -268,6 +268,7 @@ def main():
 
     content = sections.get("content", "")
     safe_content, detected_all = processor.mask_text(content, header_names)
+    print(safe_content)
 
     analyzer = InsureAnalysisEngine()
 
