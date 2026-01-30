@@ -1,0 +1,30 @@
+# Python 暫存檔
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虛擬環境
+venv/
+env/
+.env
+
+# 向量資料庫 (不建議上傳本地資料庫檔案，讓 User 執行時自行建立)
+chroma_db/
+*.db
+
+# 數據資料
+# 原始裁判書通常含敏感資訊，建議不隨程式碼上傳
+data/raw_documents/*.txt
+data/processed_documents/
+
+# 套件與模型快取
+.spacy/
+.cache/
+
+# 作業系統暫存
+.DS_Store
+Thumbs.db
+
+# IDE 設定
+.vscode/
+.idea/

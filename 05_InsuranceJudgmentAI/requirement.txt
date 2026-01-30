@@ -1,0 +1,15 @@
+# 基礎環境與文本處理
+spacy>=3.7.0
+sentence-transformers>=2.2.2
+pathlib
+
+# 向量資料庫與資料處理
+chromadb>=0.4.0
+numpy>=1.24.0
+
+# LLM 整合 (Ollama Python SDK)
+ollama>=0.1.6
+
+# 深度學習模型基礎 (用於 SpaCy Transformer 模型)
+torch>=2.0.0
+transformers>=4.30.0
