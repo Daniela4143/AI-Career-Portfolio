@@ -12,7 +12,8 @@
 ![LangChain](https://img.shields.io/badge/LangChain-121212?style=for-the-badge&logo=chainlink&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-FFD21E?style=for-the-badge)
-
+![Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
 ---
 
 ## 📂 專案列表 (Projects)
@@ -49,5 +50,14 @@
     * **結構化數據提取**：利用 LLM JSON Mode 將非結構化法學文本精準轉化為理賠特徵（判賠金額、核定理由）。
     * **風險預警引擎**：透過 RAG 檢索相似歷史案例，自動計算申請金額與市場行情之偏離比例，識別異常高額賠付風險。
 * [👉 查看詳情](./05_InsuranceJudgmentAI/)
+
+### 🧠 Project 6: Modular Self-RAG Agent (多引擎檢索增強生成系統)
+* **技術亮點：** `Python (OOP/ABC)`, `ChromaDB`, `Ollama (Llama 3)`, `Gemini 2.5 Flash`, `Self-RAG`
+* **功能特色：** * **模組化策略模式**：實作 `ABC (Abstract Base Class)` 定義 LLM 介面，支援 Ollama 與 Gemini 雙引擎熱插拔切換。
+    * **Self-RAG 驗證機制**：內建三階段可靠性過濾：
+        * **檢索過濾 (Retrieval Grader)**：透過 Vector Distance 門檻攔截不相關問題。
+        * **幻覺檢測 (Faithfulness Check)**：利用 LLM 作為審查員進行事實查核，確保回答內容忠於參考文本。
+    * **模型能力評測**：對比 Llama 3 與 Gemini 在邏輯推論上的表現差異，實作「事實查核員」閉環邏輯。
+* [👉 查看詳情](./06_Module_Self_RAG_Agent/)
 
 ---
