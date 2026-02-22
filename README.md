@@ -58,6 +58,6 @@
         * **檢索過濾 (Retrieval Grader)**：透過 Vector Distance 門檻攔截不相關問題。
         * **幻覺檢測 (Faithfulness Check)**：利用 LLM 作為審查員進行事實查核，確保回答內容忠於參考文本。
     * **模型能力評測**：對比 Llama 3 與 Gemini 在邏輯推論上的表現差異，實作「事實查核員」閉環邏輯。
-* [👉 查看詳情](./06_Module_Self_RAG_Agent/)
+* [👉 查看詳情](./06_Modular_Self_RAG_Agent/)
 
 ---

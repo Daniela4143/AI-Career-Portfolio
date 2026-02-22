@@ -1,0 +1,25 @@
+# --- 環境變數  ---
+.env
+
+# --- 開發過程的草稿檔案 ---
+v1.py
+v2.py
+v3.py
+v4.py
+v5.py
+v6.py
+v7.py
+v8.py
+note.txt
+
+# --- Python 自動產生的暫存檔 ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# --- 資料庫/大型檔案 ---
+chroma/
+*.db
