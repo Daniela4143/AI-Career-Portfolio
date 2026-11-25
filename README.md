@@ -56,7 +56,7 @@ pip install -r requirements.txt
   ollama pull llama3
   ```
   專案預設讀取 `data/raw_documents/text1.txt`，執行前請將待分析的純文字判決內容放在該路徑。
-- **Modular Self-RAG Agent：** 預設使用 Gemini。建立 `.env` 並設定 `GEMINI_API_KEY`（可參考 `.env.example`）。目前 `requirement.txt` 未列出程式使用的 `python-dotenv`，請另外安裝：`pip install python-dotenv`。程式碼亦提供 Ollama 引擎實作。
+- **Modular Self-RAG Agent：** 預設使用 Gemini。建立 `.env` 並設定 `GEMINI_API_KEY`（可參考 `.env.example`）；程式也提供 Ollama 引擎實作。
 
 ## 使用方式
 
@@ -122,7 +122,7 @@ python insure_check.py
 
 ### 06｜Modular Self-RAG Agent
 
-安裝 `requirement.txt`、額外安裝 `python-dotenv`，並設定 Gemini API Key 後：
+安裝 `requirement.txt` 並設定 Gemini API Key 後：
 
 ```powershell
 python agent.py
@@ -170,7 +170,6 @@ AI-Career-Portfolio/
 └── 06_Modular_Self_RAG_Agent/
     ├── README.md
     ├── agent.py
-    ├── v1.py ... v8.py     # 不同階段的實作版本
     ├── requirement.txt
     ├── .env.example
     └── images/
