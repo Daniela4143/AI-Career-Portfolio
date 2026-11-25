@@ -1,63 +1,186 @@
-# 🚀 AI Career Portfolio
+# AI Career Portfolio
 
-這是我在 **AI 與數據科學領域** 的實作專案集，涵蓋從基礎數據分析、傳統機器學習到大語言模型（LLM）微調與 RAG 系統開發。
+這個作品集收錄六個以 Python 建置的資料科學與生成式 AI 專案，涵蓋金融資料探索、監督式機器學習、RAG 文件問答、LoRA 微調、保險判決分析，以及具自我查核流程的 RAG Agent。各專案可獨立閱讀、安裝與執行；詳細設計、成果截圖與模組細節請參閱各資料夾中的 README。
 
-> 💡 **成果展示：** 詳細的技術文件、代碼實作與運行截圖，請點擊下方各專案資料夾查看。
+## 專案總覽
 
----
+| 專案 | 簡介 | 主要技術 |
+| --- | --- | --- |
+| [01 Stock Analysis EDA](./01_Stock_Analysis_EDA/) | 從 Yahoo Finance 取得 SPY 歷史股價，計算日報酬、移動平均與日內區間，並視覺化趨勢及分布。 | Python、Pandas、yfinance、Matplotlib、Seaborn |
+| [02 Linear Regression ML](./02_Linear_Regression_ML/) | 以合成資料建立線性迴歸流程，示範資料切分、特徵標準化、模型評估與殘差分析。 | Python、NumPy、Pandas、scikit-learn、Matplotlib |
+| [03 RAG Chatbot System](./03_RAG_Chatbot_System/) | 逐步演進的 PDF 知識問答系統，提供 CLI、Streamlit 對話介面與 Docker 化版本，支援對話脈絡與來源檢索。 | LangChain、ChromaDB、Hugging Face、Gemini API、Streamlit、Docker |
+| [04 LoRA Fine-Tuning](./04_LoRA_FineTuning_Project/) | 使用 LoRA 微調 DistilBERT 進行 IMDb 電影評論情感分類，並提供推論、網頁介面及 API 入口。 | PyTorch、Transformers、PEFT、Datasets、FastAPI、Streamlit |
+| [05 Insurance Judgment AI](./05_InsuranceJudgmentAI/) | 對判決文字進行個資遮蔽、結構化資訊擷取，並透過向量檢索比對相似案例及評估金額偏離。 | spaCy、Ollama、Llama 3、ChromaDB、Sentence Transformers |
+| [06 Modular Self-RAG Agent](./06_Modular_Self_RAG_Agent/) | 以可替換的 LLM 引擎進行知識檢索、回答生成、相關性篩選與忠實度查核。 | Python、ChromaDB、Ollama、Gemini API、Hugging Face Datasets |
 
-## 🛠️ 技術棧 (Tech Stack)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-121212?style=for-the-badge&logo=chainlink&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-FFD21E?style=for-the-badge)
-![Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
----
+## 技術棧
 
-## 📂 專案列表 (Projects)
+- **語言與資料處理：** Python、Pandas、NumPy
+- **機器學習與 NLP：** scikit-learn、PyTorch、Hugging Face Transformers、PEFT、spaCy
+- **生成式 AI 與檢索：** Gemini API、Ollama / Llama 3、LangChain、ChromaDB、Sentence Transformers
+- **視覺化與介面：** Matplotlib、Seaborn、Streamlit、FastAPI
+- **部署：** Docker
 
-### 📈 Project 1: Stock Analysis EDA
-* **核心技術：** `Python`, `Pandas`, `Matplotlib`, `Seaborn`
-* **專案目標：** 實作自動化數據清洗管線，並透過技術指標視覺化（如 MA 移動平均、KDJ 指標）挖掘市場潛在趨勢。
-* **關鍵成果：** 建立了一套可重複使用的金融數據探索性分析（EDA）框架。
-* [👉 查看詳情](./01_Stock_Analysis_EDA/)
+本儲存庫沒有共用的根目錄依賴設定；請依欲執行的專案安裝該資料夾中的 `requirements.txt` 或 `requirement.txt`。建議使用 Python 3.11，並為不同專案建立獨立虛擬環境，避免套件版本互相影響。
 
-### 🤖 Project 2: Linear Regression ML
-* **核心技術：** `Scikit-Learn`, `NumPy`, `Feature Engineering`
-* **專案目標：** 實作端對端的機器學習流程，包含特徵工程處理與房價趨勢預測，並建立模型評估指標（MSE/R2）。
-* **關鍵成果：** 理解並實作了迴歸模型在實際業務場景中的預測邏輯。
-* [👉 查看詳情](./02_Linear_Regression_ML/)
+## 環境安裝
 
-### 💬 Project 3: RAG Chatbot System (V3)
-* **技術亮點：** `LangChain`, `ChromaDB`, `Gemini API`, `Docker`
-* **功能特色：** * **知識溯源**：支援 PDF 文本檢索並標註來源頁碼。
-    * **對話記憶**：內建 `ConversationBufferMemory` 實現連貫的多輪對話。
-    * **容器化部署**：透過 Docker 實現一鍵部署，具備高移植性與環境隔離特點。
-* [👉 查看詳情](./03_RAG_Chatbot_System/v3_docker_cloud/)
+以下以 Windows PowerShell 為例。先進入要執行的專案資料夾，再建立並啟用虛擬環境：
 
-### 🧪 Project 4: LoRA Fine-Tuning
-* **技術亮點：** `PEFT (LoRA)`, `HuggingFace Transformers`, `PyTorch`
-* **功能特色：** * **參數高效微調**：實作 LoRA 演算法，僅需訓練 **0.98%** 的參數即完成模型訓練。
-    * **情感分析專家**：將 `DistilBERT` 成功微調至 IMDb 任務，達成 **86.3%** 的卓越準確率。
-    * **硬體優化**：展示了如何在有限運算資源下訓練大型語言模型。
-* [👉 查看詳情](./04_LoRA_FineTuning_Project/)
+```powershell
+cd 01_Stock_Analysis_EDA
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+```
 
-### 🛡️ Project 5: InsureCheck-AI (產險智能審閱)
-* **技術亮點：** `Llama 3`, `SpaCy (Transformer NER)`, `ChromaDB`, `Regex`
-* **功能特色：** * **合規去識別化**：整合 NLP 實體辨識與正則表達式，自動遮蔽判決書中的敏感個資（當事人姓名、地址等）。
-    * **結構化數據提取**：利用 LLM JSON Mode 將非結構化法學文本精準轉化為理賠特徵（判賠金額、核定理由）。
-    * **風險預警引擎**：透過 RAG 檢索相似歷史案例，自動計算申請金額與市場行情之偏離比例，識別異常高額賠付風險。
-* [👉 查看詳情](./05_InsuranceJudgmentAI/)
+安裝該專案的依賴（以第一個專案為例）：
 
-### 🧠 Project 6: Modular Self-RAG Agent (多引擎檢索增強生成系統)
-* **技術亮點：** `Python (OOP/ABC)`, `ChromaDB`, `Ollama (Llama 3)`, `Gemini 2.5 Flash`, `Self-RAG`
-* **功能特色：** * **模組化策略模式**：實作 `ABC (Abstract Base Class)` 定義 LLM 介面，支援 Ollama 與 Gemini 雙引擎熱插拔切換。
-    * **Self-RAG 驗證機制**：內建三階段可靠性過濾：
-        * **檢索過濾 (Retrieval Grader)**：透過 Vector Distance 門檻攔截不相關問題。
-        * **幻覺檢測 (Faithfulness Check)**：利用 LLM 作為審查員進行事實查核，確保回答內容忠於參考文本。
-    * **模型能力評測**：對比 Llama 3 與 Gemini 在邏輯推論上的表現差異，實作「事實查核員」閉環邏輯。
-* [👉 查看詳情](./06_Modular_Self_RAG_Agent/)
+```powershell
+pip install -r requirements.txt
+```
 
----
+其他作業系統請使用相應的虛擬環境啟用方式；每個專案都應在自己的資料夾與虛擬環境中安裝依賴。
+
+### 外部服務與額外準備
+
+- **RAG Chatbot（v1、v2、v3）：** 需要有效的 `GEMINI_API_KEY`。在各版本程式所在資料夾建立 `.env`，內容如下：
+  ```env
+  GEMINI_API_KEY=請填入你的_Gemini_API_Key
+  ```
+  v3 提供 `.env.example` 可作為範本。v1、v2 的 `requirements.txt` 未明列 PDF 讀取及 Hugging Face 嵌入套件，安裝後請補裝 `pip install pypdf sentence-transformers`。
+- **LoRA 微調：** 首次訓練會下載 IMDb 資料集及 DistilBERT 模型；訓練時間與硬體資源視環境而異。推論介面需要已產生的 `results_lora_ft/final_lora_adapter`。
+- **Insurance Judgment AI：** 安裝 spaCy 中文 Transformer 模型並準備 Ollama：
+  ```powershell
+  python -m spacy download zh_core_web_trf
+  ollama pull llama3
+  ```
+  專案預設讀取 `data/raw_documents/text1.txt`，執行前請將待分析的純文字判決內容放在該路徑。
+- **Modular Self-RAG Agent：** 預設使用 Gemini。建立 `.env` 並設定 `GEMINI_API_KEY`（可參考 `.env.example`）。目前 `requirement.txt` 未列出程式使用的 `python-dotenv`，請另外安裝：`pip install python-dotenv`。程式碼亦提供 Ollama 引擎實作。
+
+## 使用方式
+
+各資料夾是獨立專案。完成相應依賴安裝與外部服務設定後，在該專案目錄執行：
+
+### 01｜股票資料探索
+
+```powershell
+python stock_eda.py
+```
+
+程式會連線 Yahoo Finance 下載 SPY 資料；股票代號與日期範圍可在 `stock_eda.py` 的 `main()` 中調整。
+
+### 02｜線性迴歸
+
+```powershell
+python ml_regression.py
+```
+
+程式會產生合成迴歸資料、訓練模型、列印 RMSE 與 R²，並顯示預測及殘差圖。
+
+### 03｜RAG Chatbot
+
+進入欲執行的版本資料夾，安裝該版本的依賴並設定 Gemini API Key：
+
+```powershell
+# CLI 版本
+cd 03_RAG_Chatbot_System\v1_basic_cli
+python rag_chatbot.py
+
+# Streamlit 網頁版本（v2 或 v3）
+cd ..\v2_streamlit_web
+streamlit run app.py
+```
+
+Docker 版本請在 `v3_docker_cloud` 目錄準備 `.env`，再建置並啟動容器：
+
+```powershell
+# 先切換到 v3_docker_cloud 目錄
+cd ..\v3_docker_cloud
+docker build -t rag-chatbot .
+docker run --rm -p 8080:8080 --env-file .env rag-chatbot
+```
+
+### 04｜LoRA 微調與推論
+
+在專案目錄安裝依賴後，可選擇訓練模型或啟動已訓練 Adapter 的介面：
+
+```powershell
+python lora_finetune.py
+streamlit run web_gui.py
+```
+
+另可執行 `python lora_inference.py` 進行命令列推論，或執行 `python app.py` 啟動 FastAPI。推論程式需要 `results_lora_ft/final_lora_adapter` 已存在。
+
+### 05｜保險判決分析
+
+確認 Ollama 正在執行、已安裝 `llama3`，且 `data/raw_documents/text1.txt` 已備妥後：
+
+```powershell
+python insure_check.py
+```
+
+### 06｜Modular Self-RAG Agent
+
+安裝 `requirement.txt`、額外安裝 `python-dotenv`，並設定 Gemini API Key 後：
+
+```powershell
+python agent.py
+```
+
+程式會載入 SciQ 資料集，建立範例知識庫並執行檢索、生成與回答查核。
+
+## 目錄結構
+
+```text
+AI-Career-Portfolio/
+├── README.md
+├── 01_Stock_Analysis_EDA/
+│   ├── README.md
+│   ├── stock_eda.py
+│   ├── requirements.txt
+│   └── images/
+├── 02_Linear_Regression_ML/
+│   ├── README.md
+│   ├── ml_regression.py
+│   ├── requirements.txt
+│   └── images/
+├── 03_RAG_Chatbot_System/
+│   ├── v1_basic_cli/       # README、CLI 程式、requirements、images
+│   ├── v2_streamlit_web/   # README、Streamlit app、requirements、images
+│   └── v3_docker_cloud/    # README、Dockerfile、Streamlit app、requirements、data
+├── 04_LoRA_FineTuning_Project/
+│   ├── README.md
+│   ├── lora_finetune.py
+│   ├── lora_inference.py
+│   ├── app.py              # FastAPI 推論 API
+│   ├── web_gui.py          # Streamlit 推論介面
+│   ├── requirements.txt
+│   ├── images/
+│   └── results_lora_ft/    # 訓練輸出與 LoRA Adapter
+├── 05_InsuranceJudgmentAI/
+│   ├── README.md
+│   ├── insure_check.py
+│   ├── requirement.txt
+│   ├── data/
+│   │   ├── raw_documents/
+│   │   └── processed_documents/
+│   ├── chroma_db/
+│   └── images/
+└── 06_Modular_Self_RAG_Agent/
+    ├── README.md
+    ├── agent.py
+    ├── v1.py ... v8.py     # 不同階段的實作版本
+    ├── requirement.txt
+    ├── .env.example
+    └── images/
+```
+
+`images/` 存放專案展示圖；`data/` 存放文件資料；`chroma_db/` 與 `results_lora_ft/` 為向量資料庫及模型訓練產物。部分資料、資料庫或模型輸出可能需依各專案說明自行準備或執行程式產生。
+
+## 注意事項
+
+- API 金鑰請放在本機 `.env` 或環境變數中，勿提交至版本控制。
+- RAG 與微調專案首次執行可能下載模型、資料集或建立向量索引，需預留網路、磁碟與記憶體空間。
+- 股票資料下載仰賴網路連線及 Yahoo Finance 資料服務。
+- 各專案的使用細節與展示成果請參閱其資料夾內的 README。

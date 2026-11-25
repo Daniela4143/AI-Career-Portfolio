@@ -1,0 +1,6 @@
+
+# Python Virtual Environments & Outputs
+**/venv/
+venv/
+**/results_lora_ft/
+**/__pycache__/

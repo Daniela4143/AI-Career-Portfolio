@@ -1,59 +1,108 @@
-# Modular Self-RAG Agent: 多引擎科學知識問答系統
+# Modular Self-RAG Agent
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Ollama](https://img.shields.io/badge/Ollama-Llama3-black.svg)](https://ollama.ai/)
-[![Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-4285F4.svg)](https://ai.google.dev/)
+本專案以 SciQ 科學問答資料集示範模組化的檢索增強生成（RAG）與自我查核流程。`agent.py` 是主要程式入口，會載入 SciQ 訓練資料前五筆建立記憶體型 ChromaDB collection，再對預設問題執行檢索、回答生成及忠實度查核。這是命令列示範程式，並非互動式聊天介面或部署服務。
 
-## 📌 專案背景
-在 RAG (Retrieval-Augmented Generation) 系統中，LLM 容易產生「幻覺」或受限於單一引擎的效能。本專案透過 **物件導向設計 (OOP)** 實作了可擴展的檢索增強生成架構，並導入 **Self-RAG** 自我修正機制，確保系統在面對未知問題或模糊文本時，具備嚴謹的事實查核能力。
+## 核心功能
 
----
+- 以抽象基底類別 `LLMEngine` 定義可替換的語言模型介面。
+- 提供 Gemini `gemini-2.5-flash` 與 Ollama `llama3` 引擎；目前預設使用 Gemini。
+- 將 SciQ 的 `support` 文字加入向量資料庫，並檢索最相關的一筆內容。
+- **相關性檢查：** 向量距離大於程式門檻 `1.5` 時回傳「找不到相關知識」。
+- **忠實度查核：** 將生成答案交由 LLM 比對參考文本；若 JSON 查核結果判定不忠實，則拒絕該答案。
+- 以 JSON 格式產生回答及查核結果。
 
-## 🚀 核心功能
+這些機制是 LLM 輔助的示範流程，不能保證答案完全正確，也不等同獨立的事實驗證。
 
-### 1. 模組化 LLM 策略架構
-* **技術實現：** 使用 Python `abc` 模組實作 **抽象基底類別 (Abstract Base Class)**。
-* **功能：** 支援 `Ollama (Llama 3)` 與 `Gemini 2.5 Flash` 雙引擎切換，開發者僅需注入不同的 Engine 實例即可改變系統行為，提升代碼的可維護性。
+## 技術棧
 
-### 2. 多層級 Self-RAG 驗證管線
-* **技術實現：** 結合 `Vector Distance` 門檻與 `NLI (自然語言推理)` 邏輯。
-* **功能：** * **檢索過濾 (Retrieval Grader)**：自動計算查詢與知識庫的向量距離，距離過遠 (> 1.5) 即判定為無相關知識。
-    * **事實查核 (Faithfulness Check)**：將初步回答回傳給 LLM 擔任「查核員」，比對參考文本確保無編造事實。
+- Python 3.10+
+- Hugging Face Datasets（SciQ）
+- ChromaDB
+- Google Gen AI SDK（Gemini）
+- Ollama Python SDK（替代引擎）
+- python-dotenv（讀取 Gemini API 金鑰）
 
-### 3. 安全與格式控制
-* **技術實現：** `python-dotenv` 管理 API Key 與 LLM **JSON Mode**。
-* **功能：** 確保所有輸出均符合結構化 JSON 格式，便於下游系統介接，並防止金鑰洩漏。
+套件清單請參閱 [`requirement.txt`](requirement.txt)。
 
----
+## 環境安裝
 
-## 🛠 技術架構 (Technical Stack)
+建議使用 Python 3.10 以上版本，並在專案資料夾建立獨立虛擬環境。
 
-| 層級 | 技術選型 |
-| :--- | :--- |
-| **LLM Interface** | Python abc (Abstract Base Class) |
-| **LLM Engines** | Gemini 2.5 Flash / Ollama (Llama 3) |
-| **Vector Database** | ChromaDB |
-| **Data Source** | HuggingFace Datasets (SciQ) |
-| **Security** | Dotenv (.env) Environment Management |
+### Windows（PowerShell）
 
----
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirement.txt
+```
 
-## 📊 重點實作展示 (Screenshots)
+### macOS / Linux
 
-### 🔹 Self-RAG 驗證邏輯
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirement.txt
+```
+
+在專案資料夾建立或編輯 `.env`，設定自己的 Gemini API 金鑰：
+
+```env
+GEMINI_API_KEY=請填入你的_Gemini_API_Key
+```
+
+請勿將真實金鑰寫入程式碼或提交 `.env`。
+
+### 改用 Ollama（選用）
+
+安裝並啟動 Ollama，下載模型：
+
+```bash
+ollama pull llama3
+```
+
+`agent.py` 目前預設使用 Gemini。若要改用 Ollama，請將檔案底部的引擎初始化改為 `OllamaEngine(model_id="llama3")`。
+
+## 執行方式
+
+完成依賴與環境設定後，在專案資料夾執行：
+
+```bash
+python agent.py
+```
+
+程式首次執行會從 Hugging Face 下載 SciQ 資料集，接著建立小型知識庫並測試程式中的預設問題。若要更換問題，請修改 `agent.py` 的 `query_question`。
+
+向量資料庫使用 `chromadb.Client()` 建立於記憶體中，每次執行都會重新建立，不會持久化到磁碟。範例只使用五筆資料，適合展示流程，不代表完整資料集的檢索效能。
+
+## 執行展示
+
+### Self-RAG 查核流程
+
 ![Self-RAG 驗證流程](images/valid_process.png)
-*圖說：展示系統如何攔截「花朵是否會從火山噴出」等誘導性問題，並標註為「未通過事實查核」。*
 
-### 🔹 雙引擎能力對比分析
-![引擎對比](images/evaluation.png)
-*圖說：實測發現 Gemini 在否定命題的邏輯推論上優於 Llama 3，能提供更詳盡的查核原因。*
+### LLM 引擎評估
 
----
+![不同引擎評估結果](images/evaluation.png)
 
-## 💡 未來優化方向 (Roadmap)
+## 目錄結構
 
-- [ ] **混合審核機制 (Hybrid Grading)**：使用小模型生成、大模型審核的成本優化方案。
-- [ ] **多輪對話記憶**：導入 `ConversationBufferMemory` 實現具備上下文能力的 RAG。
-- [ ] **非同步請求優化**：利用 `asyncio` 提升多模型並行驗證的速度。
+```text
+06_Modular_Self_RAG_Agent/
+├── README.md
+├── agent.py               # RAG Agent 主程式
+├── note.txt
+├── requirement.txt
+├── .env.example
+└── images/
+    ├── valid_process.png
+    └── evaluation.png
+```
 
----
+## 注意事項
+
+- 若未設定 `GEMINI_API_KEY`，Gemini 引擎無法正常呼叫；Gemini 需要網路連線並受供應商配額限制。
+- SciQ 首次載入需要網路；若使用 Ollama，請確認服務與 `llama3` 模型已啟動。
+- LLM 產生的 JSON 若格式不正確，程式解析可能失敗；相關性門檻與忠實度判斷皆為示範設定。
+- 重要回答應回查參考文本，不應只依賴模型的自我查核結果。
